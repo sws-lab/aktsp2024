@@ -1,0 +1,87 @@
+opam-version: "2.0"
+name: "aktsp2024"
+version: "~dev"
+synopsis: "AKT süvenduspraktikumi 2024 materjalid"
+maintainer: "Simmo Saan"
+authors: "Simmo Saan"
+homepage: "https://github.com/sws-lab/aktsp2024"
+bug-reports: "https://github.com/sws-lab/aktsp2024/issues"
+depends: [
+  "astring" {= "0.8.5"}
+  "base-bigarray" {= "base"}
+  "base-bytes" {= "base"}
+  "base-threads" {= "base"}
+  "base-unix" {= "base"}
+  "camlp-streams" {= "5.0.1"}
+  "chrome-trace" {= "3.13.0"}
+  "cppo" {= "1.6.9"}
+  "csexp" {= "1.5.2"}
+  "dune" {= "3.13.0"}
+  "dune-build-info" {= "3.13.0"}
+  "dune-configurator" {= "3.13.0"}
+  "dune-rpc" {= "3.13.0"}
+  "dyn" {= "3.13.0"}
+  "fiber" {= "3.7.0"}
+  "lambda-term" {= "3.3.2"}
+  "logs" {= "0.7.0"}
+  "lwt" {= "5.7.0"}
+  "lwt_react" {= "1.2.0"}
+  "merlin-lib" {= "4.13-414"}
+  "mew" {= "0.1.0"}
+  "mew_vi" {= "0.5.0"}
+  "ocaml" {= "4.14.1"}
+  "ocaml-base-compiler" {= "4.14.1"}
+  "ocaml-compiler-libs" {= "v0.12.4"}
+  "ocaml-config" {= "2"}
+  "ocaml-lsp-server" {= "1.17.0"}
+  "ocaml-options-vanilla" {= "1"}
+  "ocamlbuild" {= "0.14.3"}
+  "ocamlc-loc" {= "3.13.0"}
+  "ocamlfind" {= "1.9.6"}
+  "ocamlformat-rpc-lib" {= "0.26.1"}
+  "ocamlgraph" {= "2.1.0"}
+  "ocplib-endian" {= "1.2"}
+  "ordering" {= "3.13.0"}
+  "ounit2" {= "2.2.7"}
+  "pp" {= "1.2.0"}
+  "ppx_derivers" {= "1.2.1"}
+  "ppx_deriving" {= "5.2.1"}
+  "ppx_deriving_hash" {= "0.1.1"}
+  "ppx_yojson_conv_lib" {= "v0.16.0"}
+  "ppxlib" {= "0.31.0"}
+  "qcheck-core" {= "0.21.3"}
+  "qcheck-ounit" {= "0.21.3"}
+  "re" {= "1.11.0"}
+  "react" {= "1.2.2"}
+  "result" {= "1.5"}
+  "seq" {= "base"}
+  "sexplib0" {= "v0.16.0"}
+  "spawn" {= "v0.15.1"}
+  "stdlib-shims" {= "0.3.0"}
+  "stdune" {= "3.13.0"}
+  "topkg" {= "1.0.7"}
+  "trie" {= "1.0.0"}
+  "uchar" {= "0.0.2"}
+  "utop" {= "2.13.1"}
+  "uucp" {= "15.1.0"}
+  "uuseg" {= "15.1.0"}
+  "uutf" {= "1.0.3"}
+  "xdg" {= "3.13.0"}
+  "yojson" {= "2.1.2"}
+  "zed" {= "3.2.3"}
+]
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+dev-repo: "git+https://github.com/sws-lab/aktsp2024.git"
