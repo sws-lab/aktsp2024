@@ -1,0 +1,4 @@
+(library
+ (name ounittodo)
+ (libraries ounit2 qcheck-ounit)
+ (wrapped false))
