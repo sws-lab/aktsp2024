@@ -16,7 +16,7 @@
     * NB! Windows-is klooni repositoorium WSL-i sisse (nt sealsesse kodukausta `~`), mitte väljaspoole (`/mnt/c/...`), sest muidu toimub OCaml-i kompileerimine väga aeglaselt.
 5. Navigeeri käsureal kloonitud repositooriumi kausta.
 6. Käivita: `opam init -a --bare -y`
-7. Käivita: `opam switch create --deps-only --locked -y .` (NB! punkt)
+7. Käivita: `opam switch create --deps-only --locked -y . 4.14.1` (NB! punkt)
 
 ### Paigalduse kontrollimine
 1. Käivita: `eval $(opam env)`
