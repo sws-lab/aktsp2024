@@ -6,7 +6,7 @@
 ## Paigaldamine
 1. Sõltuvalt operatsioonisüsteemist:
     * Windows: paigalda [WSL](https://docs.microsoft.com/en-us/windows/wsl/install). **Edasi tööta WSL-is.**
-        * Paigalda opam-i jaoks vajalikud paketid: `sudo apt install bubblewrap unzip bzip2`
+        * Paigalda opam-i ja OCaml-i jaoks vajalikud paketid: `sudo apt install bubblewrap unzip bzip2 gcc make`
     * Linux: ära tee midagi, tegid juba õige valiku!
     * MacOS: paigalda [homebrew](https://brew.sh/).
 2. Paigalda [opam](https://opam.ocaml.org/doc/Install.html).
