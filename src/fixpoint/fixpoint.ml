@@ -4,11 +4,18 @@
     Vt. Vesali "The Sulund Design Pattern™" slaide. *)
 
 (** Püsipunktid üle suvalise võrreldava tüübi. *)
-module Make (D: sig type t [@@deriving eq] end) =
+module Make (D: sig
+    type t
+    val equal: t -> t -> bool (* Sama mis [@@deriving eq] *)
+  end) =
 struct
   (** Leiab funktsiooni püsipunkti alustades iteratsiooni antud väärtusest. *)
-  let fp (f: D.t -> D.t) (initial: D.t): D.t =
-    failwith "TODO"
+  let rec fp (f: D.t -> D.t) (x: D.t): D.t =
+    let x' = f x in
+    if D.equal x x' then
+      x
+    else
+      fp f x'
 end
 
 (** Püsipunktid üle hulkade. *)
@@ -19,10 +26,10 @@ struct
   (** Leiab funktsiooni vähima püsipunkti.
       Kasutada fp funktsiooni. *)
   let lfp (f: D.t -> D.t): D.t =
-    failwith "TODO"
+    fp f D.empty
 
   (** Leiab funktsiooni sulundi, mis sisaldab antud väärtusi.
       Kasutada lfp funktsiooni. *)
   let closure (f: D.t -> D.t) (initial: D.t): D.t =
-    failwith "TODO"
+    lfp (fun x -> D.union initial (f x))
 end
