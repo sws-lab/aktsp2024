@@ -18,6 +18,7 @@ let nfa_eps_set states =
   IntSet.elements states
   |> List.concat_map nfa_eps
   |> IntSet.of_list
+  (* IntSet.of_list (List.concat_map nfa_eps (IntSet.elements states)) *)
 
 module IntSetFP = MakeSet (IntSet)
 
