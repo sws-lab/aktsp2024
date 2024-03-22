@@ -1,0 +1,4 @@
+(test
+ (name toylangs_test)
+ (libraries ounit2 ounittodo toylangs)
+ (preprocess (pps ppx_deriving.std)))

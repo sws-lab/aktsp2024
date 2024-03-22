@@ -1,0 +1,4 @@
+(test
+ (name eval_test)
+ (libraries ounit2 ounittodo eval ast)
+ (preprocess (pps ppx_deriving.std)))

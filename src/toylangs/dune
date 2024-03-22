@@ -1,0 +1,3 @@
+(library
+ (name toylangs)
+ (libraries crashcourse))
