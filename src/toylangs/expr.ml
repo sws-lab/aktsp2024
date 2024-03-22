@@ -9,4 +9,8 @@ type t =
 
 
 let rec eval (e: t): int =
-  failwith "TODO"
+  match e with
+  | Num i -> i
+  | Neg e -> -(eval e)
+  | Add (e1, e2) -> eval e1 + eval e2
+  | Div (e1, e2) -> eval e1 / eval e2
