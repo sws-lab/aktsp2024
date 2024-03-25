@@ -1,0 +1,3 @@
+(library
+ (name toyatp)
+ (libraries z3 zarith toylangs))
