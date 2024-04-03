@@ -1,0 +1,3 @@
+(test
+ (name domain_test)
+ (libraries ounit2 ounittodo domain))
