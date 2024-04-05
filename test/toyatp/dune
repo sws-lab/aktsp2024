@@ -1,0 +1,4 @@
+(test
+ (name toyatp_test)
+ (libraries ounit2 ounittodo toyatp crashcourse)
+ (preprocess (pps ppx_deriving.std)))

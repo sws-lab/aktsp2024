@@ -1,3 +1,4 @@
 (library
  (name fixpoint)
+ (libraries domain)
  (preprocess (pps ppx_deriving.std)))
