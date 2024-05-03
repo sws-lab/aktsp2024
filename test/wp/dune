@@ -1,0 +1,3 @@
+(test
+ (name wp_test)
+ (libraries ounit2 ounittodo ast eval symbolic wp))

@@ -1,0 +1,4 @@
+(library
+ (name wp)
+ (libraries ast eval symbolic z3)
+ (preprocess (pps ppx_deriving.std)))
