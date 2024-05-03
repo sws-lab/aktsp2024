@@ -40,4 +40,12 @@ type verdict =
     Vihje: match-i Solver.check tulemust.
     Vihje: env_of_model. *)
 let check (stmt: Ast.stmt): verdict =
-  failwith "TODO"
+  let formula = Syntax.(not (wp stmt true_)) in
+  match Solver.check solver [formula] with
+  | SATISFIABLE ->
+    let model = Option.get (Solver.get_model solver) in
+    Incorrect (env_of_model model)
+  | UNSATISFIABLE ->
+    Correct
+  | UNKNOWN ->
+    Unknown
