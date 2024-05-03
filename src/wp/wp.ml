@@ -9,7 +9,22 @@ open Symbolic
     Vihje: Expr.substitute_one.
     Vihje: bool_of_int. *)
 let rec wp (stmt: Ast.stmt) (post: Expr.expr): Expr.expr =
-  failwith "TODO"
+  let open Syntax in
+  match stmt with
+  | Nop -> post
+  | Error -> false_
+  | Assign (v, e) ->
+    let e' = eval_expr e in
+    Expr.substitute_one post !v e'
+  | Seq (a, b) ->
+    wp a (wp b post)
+  | If (c, t, f) ->
+    let c' = bool_of_int (eval_expr c) in
+    let t' = implies c' (wp t post) in
+    let f' = implies (not c') (wp f post) in
+    t' && f'
+  | While (Num 1, Nop) -> true_
+  | _ -> failwith "TODO"
 
 
 (** Korrektsuse kontrolli tulemus. *)

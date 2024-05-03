@@ -58,14 +58,31 @@ let bool_of_int expr = Syntax.(expr <> ~$0)
     Vihje: let open Syntax in ...
     Vihje: int_of_bool. *)
 let eval_binary (l: Expr.expr) (b: Ast.binary) (r: Expr.expr): Expr.expr =
-  failwith "TODO"
+  let open Syntax in
+  match b with
+  | Add (** + *) -> l + r
+  | Sub (** - *) -> l - r
+  | Mul (** * *) -> l * r
+  | Div (** / *) -> l / r
+  | Mod (** % *) -> l mod r
+  | Eq (** == *) -> int_of_bool (l = r)
+  | Ne (** <> *) -> int_of_bool (l <> r)
+  | Lt (** < *) -> int_of_bool (l < r)
+  | Le (** <= *) -> int_of_bool (l <= r)
+  | Gt (** > *) -> int_of_bool (l > r)
+  | Ge (** >= *) -> int_of_bool (l >= r)
 
 (** Teisendab avaldise Z3 avaldiseks.
     Rand avaldist pole vaja toetada, sest see pole nii lihtne kui võib arvata.
     Vihje: let open Syntax in ...
     Vihje: eval_binary. *)
 let rec eval_expr (expr: Ast.expr): Expr.expr =
-  failwith "TODO"
+  let open Syntax in
+  match expr with
+  | Num i -> ~$i
+  | Var v -> !v
+  | Rand (l, r) -> failwith "eval_expr: Rand"
+  | Binary (l, b, r) -> eval_binary (eval_expr l) b (eval_expr r)
 
 
 module Env = Eval.Common.Env
