@@ -1,0 +1,3 @@
+(test
+ (name abseval_test)
+ (libraries ounit2 ounittodo constraint constraint_abseval ast cfg))
