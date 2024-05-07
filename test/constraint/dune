@@ -1,0 +1,4 @@
+(test
+ (name constraint_test)
+ (libraries ounit2 ounittodo constraint)
+ (preprocess (pps ppx_deriving.std ppx_deriving_hash)))
