@@ -1,5 +1,5 @@
 (library
  (name domain)
  (wrapped false) ; TODO: wrap
- (libraries ast eval)
+ (libraries crashcourse ast eval)
  (preprocess (pps ppx_deriving.std)))

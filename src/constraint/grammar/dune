@@ -1,0 +1,4 @@
+(library
+ (name constraint_grammar)
+ (libraries constraint domain)
+ (preprocess (pps ppx_deriving.std ppx_deriving_hash)))
