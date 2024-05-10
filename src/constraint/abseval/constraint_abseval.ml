@@ -14,7 +14,17 @@ struct
       Vihje: Abseval.eval_expr.
       Vihje: Abseval.eval_guard. *)
   let eval_edge (env: ED.t) (edge: Cfg.Edge.t): ED.t =
-    failwith "TODO"
+    match edge with
+    | Nop -> env
+    | Assign (v, e) ->
+      let id = eval_expr env e in
+      ED.add v id env
+    | Error ->
+      if ED.equal env ED.bot then
+        ED.bot
+      else
+        failwith "eval_edge: Error"
+    | Guard (e, b) -> eval_guard env e b
 
 
   (** Võrrandisüsteem juhtvoograafiga defineeritud programmi jaoks. *)
@@ -36,6 +46,16 @@ struct
         Vihje: Cfg.pred.
         Vihje: eval_edge. *)
     let f (node: V.t) (get: V.t -> D.t): D.t =
-      failwith "TODO"
+      let preds = Cfg.pred cfg node in
+      let envs = List.map (fun (edge, prev_node) ->
+          let env = get prev_node in
+          eval_edge env edge
+        ) preds
+      in
+      let env' = List.fold_left D.join D.bot envs in
+      if V.equal node cfg.entry then
+        D.join entry_env env'
+      else
+        env'
   end
 end

@@ -35,7 +35,15 @@ struct
     (** Nullable võrrandite paremad pooled.
         Järgi täpselt grammatikat ja ära ise lihtsusta! *)
     let f (nt: V.t) (get: V.t -> D.t): D.t =
-      failwith "TODO"
+      match nt with
+      (*  T → R
+          T → aTc
+          R →
+          R → bR *)
+      | T -> get R ||
+            (false && get T && false)
+      | R -> true ||
+            (false && get R)
   end
 
   (** FIRST võrrandisüsteem. *)
@@ -53,7 +61,13 @@ struct
         Vihje: D.singleton.
         Vihje: D.join. *)
     let f (nt: V.t) (get: V.t -> D.t): D.t =
-      failwith "TODO"
+      match nt with
+      (*  T → R
+          T → aTc
+          R →
+          R → bR *)
+      | T -> D.join (get R) (D.singleton 'a')
+      | R -> D.join D.empty (D.singleton 'b')
   end
 
   (** FOLLOW jaoks saaks samuti võrrandisüsteemi moodustada,
@@ -85,7 +99,13 @@ struct
     (** Nullable võrrandite paremad pooled.
         Järgi täpselt grammatikat ja ära ise lihtsusta! *)
     let f (nt: V.t) (get: V.t -> D.t): D.t =
-      failwith "TODO"
+      (* A → BAa
+         A →
+         B → bBc
+         B → AA *)
+      match nt with
+      | A -> (get B && get A && false) || true
+      | B -> (false && get B && false) || (get A && get A)
   end
 
   module FirstSys =
@@ -99,7 +119,13 @@ struct
         Võid eeldada Nullable lahendit.
         Järgi täpselt grammatikat ja ära ise lihtsusta! *)
     let f (nt: V.t) (get: V.t -> D.t): D.t =
-      failwith "TODO"
+      (* A → BAa
+         A →
+         B → bBc
+         B → AA *)
+      match nt with
+      | A -> D.join (D.join (get B) (D.join (get A) (D.singleton 'a'))) D.empty
+      | B -> D.join (D.singleton 'b') (D.join (get A) (get A))
   end
 end
 
