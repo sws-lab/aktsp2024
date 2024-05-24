@@ -1,0 +1,9 @@
+(library
+ (name regex)
+ (libraries fixpoint)
+ (preprocess (pps ppx_deriving.std)))
+
+(ocamllex re_lexer)
+
+(ocamlyacc re_parser)
+

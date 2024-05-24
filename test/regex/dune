@@ -1,0 +1,3 @@
+(test
+ (name regex_test)
+ (libraries ounit2 ounittodo qcheck-ounit regex str))
